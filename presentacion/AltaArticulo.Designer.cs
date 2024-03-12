@@ -35,7 +35,7 @@
             this.txtPrecio = new System.Windows.Forms.TextBox();
             this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.txtNombre = new System.Windows.Forms.TextBox();
-            this.txtCodigco = new System.Windows.Forms.TextBox();
+            this.txtCodigo = new System.Windows.Forms.TextBox();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.lblMarca = new System.Windows.Forms.Label();
@@ -105,12 +105,12 @@
             this.txtNombre.Size = new System.Drawing.Size(100, 22);
             this.txtNombre.TabIndex = 1;
             // 
-            // txtCodigco
+            // txtCodigo
             // 
-            this.txtCodigco.Location = new System.Drawing.Point(167, 29);
-            this.txtCodigco.Name = "txtCodigco";
-            this.txtCodigco.Size = new System.Drawing.Size(100, 22);
-            this.txtCodigco.TabIndex = 0;
+            this.txtCodigo.Location = new System.Drawing.Point(167, 29);
+            this.txtCodigo.Name = "txtCodigo";
+            this.txtCodigo.Size = new System.Drawing.Size(100, 22);
+            this.txtCodigo.TabIndex = 0;
             // 
             // btnAceptar
             // 
@@ -208,7 +208,7 @@
             this.Controls.Add(this.lblMarca);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAceptar);
-            this.Controls.Add(this.txtCodigco);
+            this.Controls.Add(this.txtCodigo);
             this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.txtDescripcion);
             this.Controls.Add(this.txtPrecio);
@@ -235,7 +235,7 @@
         private System.Windows.Forms.TextBox txtPrecio;
         private System.Windows.Forms.TextBox txtDescripcion;
         private System.Windows.Forms.TextBox txtNombre;
-        private System.Windows.Forms.TextBox txtCodigco;
+        private System.Windows.Forms.TextBox txtCodigo;
         private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Label lblMarca;

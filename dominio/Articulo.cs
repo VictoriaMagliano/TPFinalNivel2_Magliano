@@ -8,15 +8,19 @@ using System.Threading.Tasks;
 namespace dominio
 {
     public class Articulo
+
     {
+        public int Id { get; set; }
         [DisplayName("Código")]
         public string Codigo { get; set; }
         public string Nombre { get; set; }
         [DisplayName("Descripción")]
         public string Descripcion { get; set; }
-        public int IdMarca { get; set; }
-        [DisplayName("IdCategoría")]
-        public int IdCategoria { get; set; }
+        //public int IdMarca { get; set; }
+        /// <summary>
+        /// [DisplayName("IdCategoría")]
+        /// </summary>
+        //public int IdCategoria { get; set; }
         public string ImagenUrl { get; set; }
         public decimal Precio { get; set; }
 

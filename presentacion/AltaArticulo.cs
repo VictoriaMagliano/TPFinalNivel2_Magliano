@@ -14,10 +14,19 @@ namespace presentacion
 {
     public partial class frmAltaArticulo : Form
     {
+        private Articulo articulo = null;
         public frmAltaArticulo()
         {
             InitializeComponent();
         }
+
+        public frmAltaArticulo(Articulo articulo)
+        {
+            InitializeComponent();
+            this.articulo = articulo;
+            Text = "Modificar Articulo";
+        }
+
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
@@ -26,22 +35,35 @@ namespace presentacion
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            Articulo art = new Articulo();
-            ArticuloNegocio negocio = new ArticuloNegocio();    
+
+            ArticuloNegocio negocio = new ArticuloNegocio();
 
             try
             {
-                art.Codigo = txtCodigco.Text;
-                art.Nombre = txtNombre.Text;
-                art.Descripcion = txtDescripcion.Text;
-                art.ImagenUrl = txtImagen.Text;
-                art.Precio = decimal.Parse(txtPrecio.Text);
-                art.Marca = (Marca)cboMarca.SelectedItem;
-                art.Categoria = (Categoria) cboCategoria.SelectedItem;
+                if (articulo == null)
+                    articulo = new Articulo();
+
+                articulo.Codigo = txtCodigo.Text;
+                articulo.Nombre = txtNombre.Text;
+                articulo.Descripcion = txtDescripcion.Text;
+                articulo.Precio = decimal.Parse(txtPrecio.Text);
+                articulo.ImagenUrl = txtImagen.Text;
+                articulo.Marca = (Marca)cboMarca.SelectedItem;
+                articulo.Categoria = (Categoria)cboCategoria.SelectedItem;
+
+                if (articulo.Id != 0)
+                {
+                    negocio.modificar(articulo);
+                    MessageBox.Show("Articulo modificado con exito");
+                }
+                else
+                {
+                    negocio.agregar(articulo);
+                    MessageBox.Show("Articulo agregado con exito");
+                }
 
 
-                negocio.agregar(art);
-                MessageBox.Show("Articulo agregado con exito");
+
                 Close();
 
             }
@@ -49,9 +71,48 @@ namespace presentacion
             {
 
                 MessageBox.Show(ex.ToString());
-
             }
+
+            //ArticuloNegocio negocio = new ArticuloNegocio();    
+
+            //try
+            //{
+            //if(articulo == null)
+            ///articulo = new Articulo();
+
+            ///articulo.Nombre = txtNombre.Text;
+            /// articulo.Descripcion = txtDescripcion.Text;
+            ///articulo.ImagenUrl = txtImagen.Text;
+            ///articulo.Precio = decimal.Parse(txtPrecio.Text);
+            //articulo.Marca = (Marca)cboMarca.SelectedItem;
+            ///articulo.Categoria = (Categoria) cboCategoria.SelectedItem;
+
+
+
+            ///  if (articulo.Id != 0)
+            ///{
+            /// negocio.modificar(articulo);
+            /// MessageBox.Show("Articulo modificado con exito");
+            //}
+            //else
+            //{
+            // negocio.agregar(articulo);
+            //// MessageBox.Show("Articulo agregado con exito");
+            // }
+
+
+            //Close();
+
+            // }
+            // catch (Exception ex)
+            // {
+
+            // MessageBox.Show(ex.ToString());
+
+            //}
         }
+
+
 
         private void frmAltaArticulo_Load(object sender, EventArgs e)
         {
@@ -61,7 +122,23 @@ namespace presentacion
             try
             {
                 cboMarca.DataSource = marcaNegocio.listar();
-                cboCategoria.DataSource = categoriaNegocio.listar();    
+                cboMarca.ValueMember = "Id";
+                cboMarca.DisplayMember = "Descripcion";
+                cboCategoria.DataSource = categoriaNegocio.listar();
+                cboCategoria.ValueMember = "Id";
+                cboCategoria.DisplayMember = "Descripcion";
+                
+                if(articulo!=null)
+                {
+                    txtCodigo.Text = articulo.Codigo;
+                    txtNombre.Text = articulo.Nombre.ToString();
+                    txtDescripcion.Text = articulo.Descripcion;
+                    txtImagen.Text = articulo.ImagenUrl;
+                    cargarImagen(articulo.ImagenUrl);
+                    txtPrecio.Text = articulo.Precio.ToString();
+                    cboMarca.SelectedValue = articulo.Marca.Id;
+                    cboCategoria.SelectedValue = articulo.Categoria.Id;
+                }
 
 
             }

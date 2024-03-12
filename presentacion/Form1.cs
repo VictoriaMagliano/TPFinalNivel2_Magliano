@@ -20,6 +20,7 @@ namespace presentacion
             InitializeComponent();
         }
 
+
         private void frmInicio_Load(object sender, EventArgs e)
         {
             cargar();  
@@ -35,9 +36,10 @@ namespace presentacion
                 listaArticulo = negocio.listar();
                 dgvArticulos.DataSource = listaArticulo;
                 dgvArticulos.Columns["ImagenUrl"].Visible = false;
-                dgvArticulos.Columns["IdMarca"].Visible = false;
-                dgvArticulos.Columns["IdCategoria"].Visible = false;
+                ///dgvArticulos.Columns["IdMarca"].Visible = false;
+                ///dgvArticulos.Columns["IdCategoria"].Visible = false;
                 cargarImagen(listaArticulo[0].ImagenUrl);
+                dgvArticulos.Columns["Id"].Visible = false;
             }
             catch (Exception ex)
             {
@@ -71,6 +73,15 @@ namespace presentacion
         {
             frmAltaArticulo alta = new frmAltaArticulo();
             alta.ShowDialog();
+            cargar();
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            Articulo seleccionado;
+            seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+            frmAltaArticulo modificar = new frmAltaArticulo(seleccionado);
+            modificar.ShowDialog();
             cargar();
         }
     }
