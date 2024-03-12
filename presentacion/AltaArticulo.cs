@@ -73,43 +73,6 @@ namespace presentacion
                 MessageBox.Show(ex.ToString());
             }
 
-            //ArticuloNegocio negocio = new ArticuloNegocio();    
-
-            //try
-            //{
-            //if(articulo == null)
-            ///articulo = new Articulo();
-
-            ///articulo.Nombre = txtNombre.Text;
-            /// articulo.Descripcion = txtDescripcion.Text;
-            ///articulo.ImagenUrl = txtImagen.Text;
-            ///articulo.Precio = decimal.Parse(txtPrecio.Text);
-            //articulo.Marca = (Marca)cboMarca.SelectedItem;
-            ///articulo.Categoria = (Categoria) cboCategoria.SelectedItem;
-
-
-
-            ///  if (articulo.Id != 0)
-            ///{
-            /// negocio.modificar(articulo);
-            /// MessageBox.Show("Articulo modificado con exito");
-            //}
-            //else
-            //{
-            // negocio.agregar(articulo);
-            //// MessageBox.Show("Articulo agregado con exito");
-            // }
-
-
-            //Close();
-
-            // }
-            // catch (Exception ex)
-            // {
-
-            // MessageBox.Show(ex.ToString());
-
-            //}
         }
 
 
