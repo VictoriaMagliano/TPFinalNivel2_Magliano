@@ -45,6 +45,7 @@
             this.lblImagen = new System.Windows.Forms.Label();
             this.txtImagen = new System.Windows.Forms.TextBox();
             this.pbxArticulo = new System.Windows.Forms.PictureBox();
+            this.btnAgregarImagen = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbxArticulo)).BeginInit();
             this.SuspendLayout();
             // 
@@ -194,11 +195,22 @@
             this.pbxArticulo.TabIndex = 16;
             this.pbxArticulo.TabStop = false;
             // 
+            // btnAgregarImagen
+            // 
+            this.btnAgregarImagen.Location = new System.Drawing.Point(309, 147);
+            this.btnAgregarImagen.Name = "btnAgregarImagen";
+            this.btnAgregarImagen.Size = new System.Drawing.Size(53, 22);
+            this.btnAgregarImagen.TabIndex = 17;
+            this.btnAgregarImagen.Text = "+";
+            this.btnAgregarImagen.UseVisualStyleBackColor = true;
+            this.btnAgregarImagen.Click += new System.EventHandler(this.btnAgregarImagen_Click);
+            // 
             // frmAltaArticulo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(735, 450);
+            this.Controls.Add(this.btnAgregarImagen);
             this.Controls.Add(this.pbxArticulo);
             this.Controls.Add(this.txtImagen);
             this.Controls.Add(this.lblImagen);
@@ -245,5 +257,6 @@
         private System.Windows.Forms.Label lblImagen;
         private System.Windows.Forms.TextBox txtImagen;
         private System.Windows.Forms.PictureBox pbxArticulo;
+        private System.Windows.Forms.Button btnAgregarImagen;
     }
 }

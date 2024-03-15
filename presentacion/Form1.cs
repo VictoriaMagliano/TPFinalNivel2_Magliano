@@ -160,12 +160,59 @@ namespace presentacion
             }
         }
 
+        private bool validarFiltro()
+        {
+            if(cboCampos.SelectedIndex < 0)
+            {
+                MessageBox.Show("Por favor seleccione el campo para filtrar");
+                return true;
+            }
+
+
+            if (cboCriterios.SelectedIndex < 0)
+            {
+                MessageBox.Show("Por favor seleccione el campo para filtrar");
+                return true;
+            }
+
+            if(cboCampos.SelectedItem.ToString() == "Precio")
+            {
+                if (string.IsNullOrEmpty(txtFiltroAvanzado.Text))
+                {
+                    MessageBox.Show("Debes cargar el filtro para numericos");
+                    return true;
+                }
+                if(!(soloNumeros(txtFiltroAvanzado.Text)))
+                {
+                    MessageBox.Show("Solo numeros para filtrar campo numerico");
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private bool soloNumeros(string cadena)
+        {
+            foreach (char caracter in cadena)
+            {
+                if(!(char.IsNumber(caracter)))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
         private void btnFiltro_Click(object sender, EventArgs e)
         {
             ArticuloNegocio negocio = new ArticuloNegocio();
 
             try
             {
+                if(validarFiltro())
+                {
+                    return;
+                }
                 string campo = cboCampos.SelectedItem.ToString();
                 string criterio = cboCriterios.SelectedItem.ToString();
                 string filtro = txtFiltroAvanzado.Text;

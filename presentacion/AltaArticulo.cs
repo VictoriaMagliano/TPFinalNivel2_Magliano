@@ -3,18 +3,22 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using dominio;
 using negocio;
+using System.Configuration;
 
 namespace presentacion
 {
     public partial class frmAltaArticulo : Form
     {
         private Articulo articulo = null;
+
+        private OpenFileDialog archivo = null;
         public frmAltaArticulo()
         {
             InitializeComponent();
@@ -62,7 +66,11 @@ namespace presentacion
                     MessageBox.Show("Articulo agregado con exito");
                 }
 
-
+                ///Guardo Imagen si la levanto localmente
+                if(archivo!=null && !(txtImagen.Text.ToUpper().Contains("HTTP"))) 
+                
+                    File.Copy(archivo.FileName, ConfigurationManager.AppSettings["images-folder"] + archivo.SafeFileName);
+                
 
                 Close();
 
@@ -128,6 +136,21 @@ namespace presentacion
                 pbxArticulo.Load("https://editorial.unc.edu.ar/wp-content/uploads/sites/33/2022/09/placeholder.png");
 
 
+            }
+        }
+
+        private void btnAgregarImagen_Click(object sender, EventArgs e)
+        {
+            archivo = new OpenFileDialog();
+            archivo.Filter = "jpg|*.jpg; |png|*.png";
+            archivo.ShowDialog();
+            if(archivo.ShowDialog() == DialogResult.OK)
+            {
+                txtImagen.Text = archivo.FileName;
+                cargarImagen(archivo.FileName);
+
+                //guardo la imagen
+                //File.Copy(archivo.FileName, ConfigurationManager.AppSettings["images-folder"] + archivo.SafeFileName);
             }
         }
     }
